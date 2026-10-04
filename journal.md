@@ -10,3 +10,8 @@ The GlobalKey<FormState> gives the program access to the current state of the Fo
 
 When _formKey.currentState!.validate() is called, Flutter runs the validator function for each TextFormField connected to the form. If a validator returns an error message, Flutter knows that the input is invalid and rebuilds the form to display the error message below the field. If the validator returns null, the input is considered valid and the program can continue with the save action.
 
+# Phase 3 - Lifting State Up
+
+It was necessary to move the username state from ProfileForm up to ProfileScreen because more than one widget needs access to that data. The ProfileForm changes the username, while the UserBanner needs the username so it can display the updated greeting. Keeping the state in their common parent allows both widgets to work with the same value.
+
+The FavoriteButton state should stay inside the FavoriteButton because no other widget needs to know whether the profile is favorited. Keeping this state local makes the code simpler and avoids moving state higher in the widget tree when it is not necessary.
